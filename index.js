@@ -5,7 +5,7 @@ import multer from "multer";
 import 'dotenv/config'
 
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
 
 const storage = multer.diskStorage({
     destination: "files/",
