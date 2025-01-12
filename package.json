@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/index.js",
+    "svc-install": "node src/svc-install.js",
+    "svc-uninstall": "node src/svc-uninstall.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "aripkur",
