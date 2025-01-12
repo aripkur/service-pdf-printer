@@ -56,19 +56,17 @@ app.post("/print", upload.single('file'), asyncHandler(async (req, res) => {
             message: "file is required"
         })
     }
-    const file = req.file.path;
-    const printer_name = req.body.printer_name;
-    const copy = req.body.copy;
 
-    if(!printer_name){
-        await ptp.print(file)
-    }else{
-        await ptp.print(file, {
-            printer: printer_name,
-            copies: copy || 1
+    if(req.body.printer_name){
+        await ptp.print(req.file.path, {
+            printer: req.body.printer_name,
+            copies: req.body.copy || 1
         })
+    }else{
+        await ptp.print(req.file.path)
     }
-    fs.unlinkSync(file);
+
+    fs.unlinkSync(req.file.path);
     return res.status(200).json({
         message: "success"
     });
@@ -79,7 +77,9 @@ app.use((err, req, res, next) => {
         fs.unlinkSync(req.file.path);
     }
     
-    return res.status(500).json({ message: err.message });
+    return res.status(500).json({ 
+        message: err.message 
+    });
 });
 
 app.listen(port, () => {
