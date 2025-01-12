@@ -26,8 +26,8 @@ tools:
 ## Api
 
 #### untuk cek apakah service sudah bisa diakses
-method: get
-path: /ping
+- method: get
+- path: /ping
 
 contoh
 
@@ -36,19 +36,19 @@ contoh
 jika belum bisa diakses turn off firewall defender
 
 #### untuk menampilkan list printer yang ada di pc
-method: get
-path: /
+- method: get
+- path: /
 
 contoh
 
     curl --location 'http://localhost:3000/'
 
 #### untuk kirim job ke printer default
-method: post
-path: /print
-content-type: multipart/form-data
+- method: post
+- path: /print
+- content-type: multipart/form-data
 
-form: 
+form-data: 
 - file
 
 
@@ -59,11 +59,11 @@ contoh
     --form 'file=@"/C:/Users/arip/Downloads/CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (CPPT).pdf"' 
 
 #### untuk kirim job ke printer tertentu
-method: post
-path: /print
-content-type: multipart/form-data
+- method: post
+- path: /print
+- content-type: multipart/form-data
 
-form: 
+form-data: 
 - printer_name (nama printer tujuan)
 - file
 - copy (jumlah yang mau di cetak)
